@@ -5,7 +5,7 @@ export const test = base.extend<{
   inventoryPage: InventoryPage;
 }>({
   inventoryPage: async ({ page }, use) => {
-    await page.goto('https://www.saucedemo.com/inventory.html');
+    await page.goto('/inventory.html');
     await use(new InventoryPage(page));
   },
 });
