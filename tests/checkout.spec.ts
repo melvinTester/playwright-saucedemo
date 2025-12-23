@@ -2,7 +2,8 @@ import { test, expect } from '@playwright/test';
 import { login } from '../helpers/login';
 
 test('user can complete checkout for multiple items', async ({ page }) => {
-  await login(page);
+  // IMPORTANT: navigate after storage state is loaded
+  await page.goto('https://www.saucedemo.com/inventory.html');
 
   // Add items to cart
   await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
