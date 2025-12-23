@@ -1,16 +1,15 @@
+
 import { test, expect } from '../fixtures/authenticatedPage';
 
-test('user can complete checkout for multiple items', async ({ authenticatedPage }) => {
-  const page = authenticatedPage;
+test('user can complete checkout for multiple items', async ({ inventoryPage }) => {
+  await inventoryPage.addBackpack();
+  await inventoryPage.addRedTShirt();
+  await inventoryPage.openCart();
 
-  // Add items to cart
-  await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
-  await page.locator('[data-test="add-to-cart-test.allthethings()-t-shirt-(red)"]').click();
+  // Checkout steps still use page directly for now
+  const page = inventoryPage['page'];
 
-  // Checkout
-  await page.locator('[data-test="shopping-cart-link"]').click();
   await page.locator('[data-test="checkout"]').click();
-
   await page.locator('[data-test="firstName"]').fill('Melvin');
   await page.locator('[data-test="lastName"]').fill('Burton');
   await page.locator('[data-test="postalCode"]').fill('TH4 3FD');

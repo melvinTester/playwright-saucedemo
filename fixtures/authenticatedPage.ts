@@ -1,13 +1,12 @@
-import { test as base, Page } from '@playwright/test';
+import { test as base } from '@playwright/test';
+import { InventoryPage } from '../pages/InventoryPage';
 
 export const test = base.extend<{
-  authenticatedPage: Page;
+  inventoryPage: InventoryPage;
 }>({
-  authenticatedPage: async ({ page }, use) => {
-    // This runs before EACH test
+  inventoryPage: async ({ page }, use) => {
     await page.goto('https://www.saucedemo.com/inventory.html');
-    await use(page);
-    // Cleanup happens automatically
+    await use(new InventoryPage(page));
   },
 });
 
