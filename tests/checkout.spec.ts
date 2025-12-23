@@ -1,9 +1,7 @@
-import { test, expect } from '@playwright/test';
-import { login } from '../helpers/login';
+import { test, expect } from '../fixtures/authenticatedPage';
 
-test('user can complete checkout for multiple items', async ({ page }) => {
-  // IMPORTANT: navigate after storage state is loaded
-  await page.goto('https://www.saucedemo.com/inventory.html');
+test('user can complete checkout for multiple items', async ({ authenticatedPage }) => {
+  const page = authenticatedPage;
 
   // Add items to cart
   await page.locator('[data-test="add-to-cart-sauce-labs-backpack"]').click();
